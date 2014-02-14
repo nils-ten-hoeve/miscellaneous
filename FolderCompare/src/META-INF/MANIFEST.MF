@@ -1,0 +1,2 @@
+Created-By: Nils ten Hoeve
+Main-Class: nth.foldercompare.FolderCompare
