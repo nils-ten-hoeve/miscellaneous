@@ -23,8 +23,8 @@ public class DownRateAllFiles extends AsyncTask<Void, Void, String> {
 	}
 
 	@Override
-	protected String doInBackground(Void... context) {
-		List<PlayListItem> playListItems = PlayListService.getPlayListWithAllItems();
+	protected String doInBackground(Void... v) {
+		List<PlayListItem> playListItems = PlayListService.getPlayListWithAllItems(context);
 
 		int succesCount=0;
 		StringBuffer message = new StringBuffer();

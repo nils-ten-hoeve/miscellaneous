@@ -24,8 +24,8 @@ public class Delete5WorstAndBigestFiles extends AsyncTask<Void, Void, String> {
 	}
 	
 	@Override
-	protected String doInBackground(Void... context) {
-		List<PlayListItem> itemsToDelete = PlayListService.getPlayListWith5WorstBiggestItems();
+	protected String doInBackground(Void... v) {
+		List<PlayListItem> itemsToDelete = PlayListService.getPlayListWith5WorstBiggestItems(context);
 
 		StringBuffer message = new StringBuffer();
 		message.append("Deleted 5 worst and biggest files:\n");

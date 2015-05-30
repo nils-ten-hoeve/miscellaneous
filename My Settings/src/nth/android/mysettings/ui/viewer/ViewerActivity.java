@@ -88,11 +88,15 @@ public class ViewerActivity extends Activity {
 		setPlayListItem(nextItem);
 
 		// remove file
-		boolean succes = itemToDelete.getFile().delete();
-		if (succes) {
-			Toast.makeText(this, "Item deleted", Toast.LENGTH_LONG).show();
-		} else {
-			Toast.makeText(this, "Failed to delete", Toast.LENGTH_LONG).show();
+		try {
+			boolean succes = itemToDelete.getFile().delete();
+			if (succes) {
+				Toast.makeText(this, "Item deleted", Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(this, "Failed to delete", Toast.LENGTH_LONG).show();
+			}
+		} catch (Exception exception) {
+			Toast.makeText(this, exception.getMessage(), Toast.LENGTH_LONG);
 		}
 
 	}
@@ -185,7 +189,7 @@ public class ViewerActivity extends Activity {
 		button.setImageDrawable(new IconText(playListType.toString(), 90 / playListType.toString().length()));
 
 		// get new play list
-		playList = PlayListService.getPlayList(playListType);
+		playList = PlayListService.getPlayList(playListType, this);
 		if (playList.size() > 0) {
 			setPlayListItem(playList.get(0));
 		} else {
@@ -207,8 +211,8 @@ public class ViewerActivity extends Activity {
 	public void showInfoDialog() {
 		// AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		StringBuffer message = new StringBuffer();
-				
-		File path=FileService.getMySettingsFolder();
+
+		File path = FileService.getMoviesFolder(this);
 		message.append("\nMy Settings folder:\n  Path:");
 		message.append(path.getAbsolutePath());
 		message.append("\n  Nr of Files:");
@@ -219,8 +223,8 @@ public class ViewerActivity extends Activity {
 		message.append("\n  Used space:");
 		message.append(FileService.getDirSize(path) / 1024 / 1024);
 		message.append(" Mb");
-	
-		path=FileService.getExternalDownloadFolder();
+
+		path = FileService.getExternalDownloadFolder();
 		message.append("\nExternal download folder:\n  Path:");
 		message.append(path.getAbsolutePath());
 		message.append("\n  Nr of Files:");
@@ -231,8 +235,8 @@ public class ViewerActivity extends Activity {
 		message.append("\n  Used space:");
 		message.append(FileService.getDirSize(path) / 1024 / 1024);
 		message.append(" Mb");
-		
-		path=FileService.getInternalDownloadFolder();
+
+		path = FileService.getInternalDownloadFolder();
 		message.append("\nInternal download folder:\n  Path:");
 		message.append(path.getAbsolutePath());
 		message.append("\n  Nr of Files:");
@@ -243,11 +247,11 @@ public class ViewerActivity extends Activity {
 		message.append("\n  Used space:");
 		message.append(FileService.getDirSize(path) / 1024 / 1024);
 		message.append(" Mb");
-	
+
 		message.append("\n");
-		
-		List<PlayListItem> playListItems = PlayListService.getPlayListWithAllItems();
-		
+
+		List<PlayListItem> playListItems = PlayListService.getPlayListWithAllItems(this);
+
 		// for each rating
 		for (Rating rating : Rating.values()) {
 

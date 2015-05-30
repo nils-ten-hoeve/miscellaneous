@@ -10,7 +10,15 @@ import nth.android.mysettings.ui.dialog.Dialog;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
+
+/**
+ * @deprecated Because moving files from the download directory is no longer allowed by android since you are now only allowed to modify files within the application folders
+ * We need to solve this with a downloadmanager that takes the URL from the browser and downloads the file and saves it into the application's .movie folder. See http://stackoverflow.com/questions/3028306/download-a-file-with-android-and-showing-the-progress-in-a-progressdialog  
+ * @author nilsth
+ *
+ */
 @SuppressLint("DefaultLocale")
 public class MoveDownloadedFiles extends AsyncTask<Void, Void, String> {
 
@@ -38,12 +46,14 @@ public class MoveDownloadedFiles extends AsyncTask<Void, Void, String> {
 
 	private int moveFiles(File downloadFolder) {
 
+		File path = context.getExternalFilesDir(null);
+		
 		int nrOfMovedFiles = 0;
 		File[] files = downloadFolder.listFiles();
 		for (File sourceFile : files) {
 			if (sourceFile.getName().toLowerCase().endsWith(".mp4")) {// only copy mp4
 
-				StringBuffer newFilePath = new StringBuffer(FileService.getMySettingsFolder().getPath());
+				StringBuffer newFilePath = new StringBuffer(FileService.getMoviesFolder(context).getPath());
 				newFilePath.append(FileService.FILE_SEPRATOR);
 				newFilePath.append(PlayListItem.NEVER_RATED.toString().charAt(1));
 				newFilePath.append(FileService.PARAMETER_SEPARATOR);
@@ -73,6 +83,7 @@ public class MoveDownloadedFiles extends AsyncTask<Void, Void, String> {
 					nrOfMovedFiles++;
 
 				} catch (Exception e) {
+					Toast.makeText(context, e.getMessage(),Toast.LENGTH_LONG);
 					// failed so delete result
 					destinationFile.delete();
 				}

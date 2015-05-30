@@ -2,7 +2,10 @@ package nth.android.mysettings.dom.playlist;
 
 import java.io.File;
 
+import android.content.Context;
 import android.os.Build;
+import android.os.Environment;
+import android.text.GetChars;
 
 public class FileService {
 	public static final String PARAMETER_SEPARATOR = "-";
@@ -29,32 +32,45 @@ public class FileService {
 
 	
 	public static File getInternalDownloadFolder() {
-		return new File(getInternalSdCardPath("/download"));
+		return new File(getInternalSdCardPath("/Download"));
 	}
 
 
 	public static File getExternalDownloadFolder() {
-		return new File(getExternalSdCard("/download"));
+		return new File(getExternalSdCard("/Download"));
 	}
 
-	public static  File getMySettingsFolder() {
-		return new File(getExternalSdCard("/.My Settings"));
-	}
-
-
-
-	public static void createMySettingsFolder() {
-		// create external_ds folder when needed (only for debugging)
-		File MY_SETTINGS_FOLDER=getMySettingsFolder();
-//		File EXTERNAL_DS_FOLDER = MY_SETTINGS_FOLDER.getParentFile();
-//		if (!EXTERNAL_DS_FOLDER.exists()) {
-//			EXTERNAL_DS_FOLDER.mkdir();
-//		}
-		// create my settings folder if needed
-		if (!MY_SETTINGS_FOLDER.exists()) {
-			MY_SETTINGS_FOLDER.mkdir();
+	public static  File getMoviesFolder(Context context) {
+		//TODO using application folder because API19 does not allow apps to modify (rename, delete) files in folders that aren't owned by the app. See http://www.androidcentral.com/kitkat-sdcard-changes
+		File[] movieFolders = context.getExternalFilesDirs(Environment.DIRECTORY_MOVIES);
+		File movieFolder;
+		if (movieFolders.length>1) {
+			movieFolder=movieFolders[1];//external sd card
+		} else {
+			movieFolder=movieFolders[1];//internal device memory
 		}
+		
+		movieFolder = new File(movieFolder.getAbsolutePath().replace("Movies", ".movies"));
+		if (!movieFolder.exists()) {
+			movieFolder.mkdir();
+		}
+		return movieFolder;
 	}
+
+
+
+//	public static void createMySettingsFolder(Context context) {
+//		// create external_ds folder when needed (only for debugging)
+//		File MOVIES_FOLDER=getMoviesFolder(context);
+////		File EXTERNAL_DS_FOLDER = MY_SETTINGS_FOLDER.getParentFile();
+////		if (!EXTERNAL_DS_FOLDER.exists()) {
+////			EXTERNAL_DS_FOLDER.mkdir();
+////		}
+//		// create my settings folder if needed
+//		if (!MOVIES_FOLDER.exists()) {
+//			MOVIES_FOLDER.mkdir();
+//		}
+//	}
 
 	
 	public static long getDirSize(File dir) {

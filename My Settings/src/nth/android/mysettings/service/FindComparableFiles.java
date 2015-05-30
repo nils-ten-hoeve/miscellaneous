@@ -26,7 +26,7 @@ public class FindComparableFiles extends AsyncTask<Void, Void, String> {
 		StringBuffer message = new StringBuffer();
 
 		message.append("Same file names :\n");
-		List<PlayListItem> items = PlayListService.getPlayListWithAllItemsOrderdByName();
+		List<PlayListItem> items = PlayListService.getPlayListWithAllItemsOrderdByName(context);
 		boolean wasSame = false;
 		for (int i = 0; i < items.size() - 1; i++) {// skip last one because we have none to compare it with
 			PlayListItem playListItem1 = items.get(i);
@@ -50,7 +50,7 @@ public class FindComparableFiles extends AsyncTask<Void, Void, String> {
 		}
 
 		message.append("\nSame file sizes :\n");
-		items = PlayListService.getPlayListWithAllItemsOrderdBySize();
+		items = PlayListService.getPlayListWithAllItemsOrderdBySize(context);
 		wasSame = false;
 		for (int i = 0; i < items.size() - 1; i++) {// skip last one because we have none to compare it with
 			PlayListItem playListItem1 = items.get(i);
