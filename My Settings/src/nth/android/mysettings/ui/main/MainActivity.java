@@ -14,6 +14,7 @@ import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager.LayoutParams;
 
 public class MainActivity extends Activity implements OnGesturePerformedListener {
 	private GestureLibrary gestureLib;
@@ -22,6 +23,9 @@ public class MainActivity extends Activity implements OnGesturePerformedListener
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().setFlags(LayoutParams.FLAG_SECURE,
+                LayoutParams.FLAG_SECURE);
+
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.main, null);
 		gestureOverlayView.addView(inflate);

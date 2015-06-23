@@ -8,11 +8,30 @@ import nth.android.mysettings.dom.Rating;
 import nth.android.mysettings.service.DownRateAllFiles;
 import nth.android.mysettings.service.FindComparableFiles;
 import nth.android.mysettings.service.MoveDownloadedFiles;
+import nth.android.mysettings.service.OpenUrlInIncogintoBrowser;
 import nth.android.mysettings.ui.dialog.Item;
 
 public class ItemFactory {
 	public static List<Item> createMenuItems(final ViewerActivity viewerActivity) {
 		ArrayList<Item> items = new ArrayList<Item>();
+		items.add(new Item("Open perfectgirls.net", new Runnable() {
+			@Override
+			public void run() {
+				new OpenUrlInIncogintoBrowser(viewerActivity,"http://perfectgirls.net").execute();
+			}
+		}));
+		items.add(new Item("Open youporn.com", new Runnable() {
+			@Override
+			public void run() {
+				new OpenUrlInIncogintoBrowser(viewerActivity,"http://youporn.com").execute();
+			}
+		}));
+		items.add(new Item("Open opwindend.net", new Runnable() {
+			@Override
+			public void run() {
+				new OpenUrlInIncogintoBrowser(viewerActivity,"http://opwindend.net").execute();
+			}
+		}));
 		items.add(new Item("Show info", new Runnable() {
 			@Override
 			public void run() {
