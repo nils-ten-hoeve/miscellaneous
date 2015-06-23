@@ -34,13 +34,7 @@ public class OpenUrlInIncogintoBrowser extends AsyncTask<Void, Void, String> {
 		Uri uri = Uri.parse(this.uri);
 		intent.setData(uri);
 		context.startActivity(intent);
-		
-//		String packageName = "nu.tommie.inbrowser"; 
-//		String className = "nu.tommie.inbrowser.lib.Inbrowser"; 
-//		Intent internetIntent = new Intent(Intent.ACTION_VIEW);
-//		internetIntent.addCategory(Intent.CATEGORY_LAUNCHER); 
-//		internetIntent.setClassName(packageName, className);
-//		context.startActivity(internetIntent);
+	
 		return "Ok";
 			}
 
