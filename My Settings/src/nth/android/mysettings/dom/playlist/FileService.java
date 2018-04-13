@@ -91,4 +91,12 @@ public class FileService {
 		return size;
 	}
 
+	public static File getInternalInBrowserFolder() {
+		return new File(getInternalSdCardPath("/InBrowser"));
+	}
+
+	public static File getExternalInBrowserFolder() {
+		return new File(getExternalSdCard("/InBrowser"));
+	}
+
 }

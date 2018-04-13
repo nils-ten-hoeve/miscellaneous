@@ -38,8 +38,10 @@ public class MoveDownloadedFiles extends AsyncTask<Void, Void, String> {
 
 		int nrOfMovedFiles = 0;
 		nrOfMovedFiles += moveFiles(FileService.getInternalDownloadFolder());
+		nrOfMovedFiles += moveFiles(FileService.getInternalInBrowserFolder());
 		nrOfMovedFiles += moveFiles(FileService.getExternalDownloadFolder());
-
+		nrOfMovedFiles += moveFiles(FileService.getExternalInBrowserFolder());
+		
 		return "Moved " + nrOfMovedFiles + " files.";
 
 	}

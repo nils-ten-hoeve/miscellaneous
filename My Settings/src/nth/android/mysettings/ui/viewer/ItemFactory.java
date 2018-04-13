@@ -14,24 +14,19 @@ import nth.android.mysettings.ui.dialog.Item;
 public class ItemFactory {
 	public static List<Item> createMenuItems(final ViewerActivity viewerActivity) {
 		ArrayList<Item> items = new ArrayList<Item>();
-		items.add(new Item("Open perfectgirls.net", new Runnable() {
-			@Override
-			public void run() {
-				new OpenUrlInIncogintoBrowser(viewerActivity,"http://perfectgirls.net").execute();
-			}
-		}));
-		items.add(new Item("Open youporn.com", new Runnable() {
-			@Override
-			public void run() {
-				new OpenUrlInIncogintoBrowser(viewerActivity,"http://youporn.com").execute();
-			}
-		}));
-		items.add(new Item("Open opwindend.net", new Runnable() {
-			@Override
-			public void run() {
-				new OpenUrlInIncogintoBrowser(viewerActivity,"http://opwindend.net").execute();
-			}
-		}));
+		items.add(new OpenUrlInIncogintoBrowserItem("http://perfectgirls.net", viewerActivity));
+
+		items.add(new OpenUrlInIncogintoBrowserItem("https://www.pornjam.com", viewerActivity));
+		items.add(new OpenUrlInIncogintoBrowserItem("http://www.slutload.com", viewerActivity));
+		items.add(new OpenUrlInIncogintoBrowserItem("https://www.fux.com", viewerActivity));
+		items.add(new OpenUrlInIncogintoBrowserItem("https://www.pornozot.com", viewerActivity));
+		items.add(new OpenUrlInIncogintoBrowserItem("https://www.empflix.com", viewerActivity));
+		items.add(new OpenUrlInIncogintoBrowserItem("http://vnjav.com", viewerActivity));
+		items.add(new OpenUrlInIncogintoBrowserItem("http://www.runporn.com/", viewerActivity));
+		items.add(new OpenUrlInIncogintoBrowserItem("https://xhamster.com", viewerActivity));
+		items.add(new OpenUrlInIncogintoBrowserItem("https://youporn.com", viewerActivity));
+		items.add(new OpenUrlInIncogintoBrowserItem("https://opwindend.net", viewerActivity));
+
 		items.add(new Item("Show info", new Runnable() {
 			@Override
 			public void run() {
