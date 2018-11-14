@@ -7,7 +7,7 @@ public class InputButton extends Button {
 	public InputButton(String text, Runnable action) {
 		super(text);
 		setOnAction(e -> action.run());
-		setPrefWidth(160);
+		setPrefWidth(190);
 		setPrefHeight(40);
 	}
 

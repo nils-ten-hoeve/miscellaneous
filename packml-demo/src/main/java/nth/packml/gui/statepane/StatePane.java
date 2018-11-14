@@ -6,17 +6,16 @@ import nth.packml.state.State;
 
 public class StatePane extends Pane {
 
-
 	public StatePane(PackMLStateMachine stateMachine) {
 		addStageIndicators(stateMachine);
 		addStageDescription(stateMachine);
-		
+
 		setTranslateX(730);
-		setTranslateY(140);
+		setTranslateY(220);
 	}
 
 	private void addStageDescription(PackMLStateMachine stateMachine) {
-		StateDescription stateDescription=new StateDescription(stateMachine);
+		StateDescription stateDescription = new StateDescription(stateMachine);
 		getChildren().add(stateDescription);
 	}
 
@@ -38,7 +37,7 @@ public class StatePane extends Pane {
 
 		addNewStateIndicator(stateMachine, State.STOPPED, 0, 4);
 		addNewStateIndicator(stateMachine, State.STOPPING, 1, 4);
-		
+
 		addNewStateIndicator(stateMachine, State.CLEARING, 2, 5);
 		addNewStateIndicator(stateMachine, State.ABORTED, 3, 5);
 		addNewStateIndicator(stateMachine, State.ABORTING, 4, 5);

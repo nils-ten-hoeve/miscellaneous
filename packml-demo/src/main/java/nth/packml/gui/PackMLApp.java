@@ -62,7 +62,7 @@ public class PackMLApp extends Application {
 
 		primaryStage.setResizable(false);
 
-		stateMachine.fireRequest(ModeRequest.AUTOMATIC);
+		stateMachine.fireRequest(ModeRequest.PRODUCTION);
 	}
 
 	private ImageView createOmronDisplayImage() {

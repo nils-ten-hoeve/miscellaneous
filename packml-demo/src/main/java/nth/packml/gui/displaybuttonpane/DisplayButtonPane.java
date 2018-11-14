@@ -24,13 +24,14 @@ public class DisplayButtonPane extends Pane {
 			@Override
 			public void changed(ObservableValue<? extends System> observable, System oldValue, System newSystem) {
 				getChildren().clear();
-				List<DisplayButton> displayButtons = newSystem.getDisplayButtons();
+				List<Control> displayButtons = newSystem.getDisplayButtons();
 				int x = 0;
 				for (Control displayButton : displayButtons) {
+					getChildren().add(displayButton);
 					displayButton.setLayoutX(x);
 					x += displayButton.getPrefWidth() + 10;
-					getChildren().add(displayButton);
 				}
+
 			}
 		};
 	}

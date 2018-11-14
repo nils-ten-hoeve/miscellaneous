@@ -8,9 +8,9 @@ public class DisplayStateProperty extends SimpleObjectProperty<DisplayButtonStat
 	private static final DisplayButtonState INITIAL_VALUE = DisplayButtonState.OFF;
 
 	public DisplayStateProperty(BooleanBinding onBinding, BooleanBinding blinkBinding) {
-		set(INITIAL_VALUE);
 		onBinding.addListener(e -> onChange(onBinding, blinkBinding));
 		blinkBinding.addListener(e -> onChange(onBinding, blinkBinding));
+		onChange(onBinding, blinkBinding);
 	}
 
 	private void onChange(BooleanBinding onBinding, BooleanBinding blinkBinding) {

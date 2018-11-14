@@ -12,8 +12,8 @@ import nth.packml.system.System;
 public class OutputPane extends Pane {
 
 	public OutputPane(PackMLStateMachine stateMachine) {
-		setTranslateX(400);
-		setTranslateY(200);
+		setTranslateX(430);
+		setTranslateY(220);
 		ChangeListener<System> listener = createSystemChangeListener();
 		stateMachine.getSystemProperty().addListener(listener);
 	}

@@ -10,27 +10,27 @@ import javafx.scene.layout.Pane;
 import nth.packml.gui.PackMLStateMachine;
 import nth.packml.system.System;
 
-public class InputPane extends Pane  {
+public class InputPane extends Pane {
 
 	public InputPane(PackMLStateMachine stateMachine) {
 		setTranslateX(150);
-		setTranslateY(200);
-		ChangeListener<System> listener=createSystemChangeListener();
+		setTranslateY(220);
+		ChangeListener<System> listener = createSystemChangeListener();
 		stateMachine.getSystemProperty().addListener(listener);
 	}
 
 	private ChangeListener<System> createSystemChangeListener() {
 		return new ChangeListener<System>() {
-			
+
 			@Override
 			public void changed(ObservableValue<? extends System> observable, System oldValue, System newSystem) {
 				getChildren().clear();
 				getChildren().add(new Label("Inputs:"));
 				List<Control> inputs = newSystem.getInputs();
-				int y=30;
+				int y = 30;
 				for (Control input : inputs) {
 					input.setLayoutY(y);
-					y+=50;
+					y += 50;
 					getChildren().add(input);
 				}
 			}

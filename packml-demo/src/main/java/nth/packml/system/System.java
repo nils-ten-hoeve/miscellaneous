@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.scene.control.Control;
-import nth.packml.gui.displaybuttonpane.DisplayButton;
 import nth.packml.gui.outputpane.Output;
 import nth.packml.mode.Mode;
 import nth.packml.state.State;
@@ -17,7 +16,7 @@ public abstract class System {
 
 	abstract public ModeStateDescriptions getModeStateDescriptions();
 
-	abstract public List<DisplayButton> getDisplayButtons();
+	abstract public List<Control> getDisplayButtons();
 
 	abstract public List<Control> getInputs();
 

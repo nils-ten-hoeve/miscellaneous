@@ -9,7 +9,7 @@ public class InputToggleButton extends ToggleButton {
 
 	public InputToggleButton(String text) {
 		super(text);
-		setPrefWidth(160);
+		setPrefWidth(190);
 		setPrefHeight(40);
 	}
 
